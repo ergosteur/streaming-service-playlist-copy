@@ -1,3 +1,26 @@
+"""
+convert_playlist_aio_plex_spotify_youtube.py
+
+Version: 1.1
+Date: 2024-10-28
+Author: ergosteur (LLM assisted)
+Github: https://github.com/ergosteur/streaming-service-playlist-copy
+
+Description:
+    This script syncs playlists between Spotify, YouTube Music, and Plex, supporting multiple directions (e.g., Spotify to Plex, Plex to YouTube Music).
+    It handles playlist creation, updating, and duplicates, with options for exact or fuzzy album matching and conflict management.
+
+Library Requirements:
+    This script requires the following libraries:
+        - requests
+        - spotipy
+        - ytmusicapi
+        - plexapi
+
+    To install these dependencies, run:
+        pip install requests spotipy ytmusicapi plexapi
+"""
+
 import requests
 import spotipy
 from spotipy.oauth2 import SpotifyOAuth
