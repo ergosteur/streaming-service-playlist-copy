@@ -37,7 +37,7 @@ import time
 parser = argparse.ArgumentParser(description="Sync playlists between Spotify, YouTube Music, and Plex.")
 parser.add_argument('--source-service', choices=['plex', 'spotify', 'ytmusic'], required=True, help="Source service: Spotify or YouTube Music")
 parser.add_argument('--destination-service', choices=['plex', 'spotify', 'ytmusic'], required=True, help="Destination service: Plex, Spotify, or YouTube Music")
-parser.add_argument('--playlist-url', required=True, help="URL of the source playlist")
+parser.add_argument('--playlist-url', help="URL of the source playlist")
 parser.add_argument('--cookies-path', help="Path to cookies.txt file (for Spotify)")
 parser.add_argument('--yt-oauth-json', help="Path to YouTube Music OAuth JSON file")
 parser.add_argument('--plex-url', help="Plex server URL")
@@ -235,7 +235,7 @@ def find_track_in_plex(artist_name, track_name, album_name=None):
 # Function to add tracks to Plex
 def add_to_plex_playlist(tracks):
     playlist_name = args.playlist_name or "Synced Playlist"
-    music_library = plex.library.section(args.plex_library)
+    
     existing_playlist = plex.playlist(playlist_name) if playlist_name in [p.title for p in plex.playlists()] else None
     
     # Collect matched Plex tracks
@@ -270,7 +270,7 @@ def add_to_plex_playlist(tracks):
 # Function to add tracks to YouTube Music with conflict handling and duplicate checking
 def add_to_youtube_playlist(tracks):
     playlist_name = args.playlist_name or "Synced Playlist"
-    
+    playlist_description = ""
     # Check for existing playlists on YouTube Music
     existing_playlists = ytmusic.get_library_playlists()
     existing_playlist = next((p for p in existing_playlists if p['title'].lower() == playlist_name.lower()), None)
@@ -293,6 +293,10 @@ def add_to_youtube_playlist(tracks):
         else:
             sys.exit(f"Playlist '{playlist_name}' already exists on YouTube Music. Use --append or --replace to modify.")
     else:
+        if 'plex' in [args.source_service]:
+                playlist_description = "Synced from Plex"
+        elif 'spotify' in [args.source_service]:
+                playlist_description = "Synced from Spotify"
         playlist_id = ytmusic.create_playlist(playlist_name, playlist_description)
         if args.verbose:
             print(f"Created new YouTube Music playlist '{playlist_name}'.")
