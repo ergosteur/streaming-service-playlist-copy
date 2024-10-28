@@ -91,6 +91,12 @@ python convert_playlist_aio_plex_spotify_youtube.py --source-service plex --dest
  - get_spotify_playlist.py : simply prints a Spotify playlist to stdout in text format.
  - search_plex_trac: test of recursive search in the Plex music library.
 
+## Dependencies, thanks
+This script merely ties together the work of the talented developers behind these excellent Python api libraries:
+ - [ytmusicapi](https://github.com/sigma67/ytmusicapi)
+ - [spotipy](https://github.com/spotipy-dev/spotipy)
+ - [python-plexapi](https://github.com/pkkid/python-plexapi)
+
 ## Version History
 - **v1.0:** Initial version with basic syncing functionality.
 - **v1.1:** Minor bug fixes.
