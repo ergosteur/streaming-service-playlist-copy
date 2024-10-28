@@ -3,7 +3,7 @@
 
 **Version:** 1.1  
 **Date:** 2024-10-28  
-**Author:** ergo
+**Author:** ergosteur (LLM assisted)
 
 ## Description
 `convert_playlist_aio_plex_spotify_youtube.py` is a versatile Python script designed to sync playlists between Spotify, YouTube Music, and Plex. It supports multiple sync directions (e.g., Spotify to Plex, Plex to YouTube Music) with options for exact or fuzzy album matching and conflict management, preventing duplicate additions. The script can create new playlists or update existing ones, handling various platform-specific quirks seamlessly.
@@ -38,7 +38,7 @@ The script requires several command-line arguments to specify the source and des
 - `--unmatched-format`: Format of the unmatched output file (`text` or `csv`, default is `text`).
 - `--verbose` or `-v`: Enable verbose output for detailed feedback.
 
-### Generating Required Files
+### Generating Required Authentication Files
 
 #### `cookies.txt` for Spotify Authentication
 1. **Download and Install**: Use the browser extension [Get cookies.txt](https://chrome.google.com/webstore/detail/get-cookiestxt/) for Chrome or Firefox to export your cookies.
@@ -86,10 +86,13 @@ python convert_playlist_aio_plex_spotify_youtube.py --source-service plex --dest
 python convert_playlist_aio_plex_spotify_youtube.py --source-service plex --destination-service ytmusic --playlist-name "Synced Playlist" --yt-oauth-json path/to/ytmusic_oauth.json --verbose
 ```
 
+## Other scripts
+ - convert_playlist_xx_yy.py : Single-purpose scripts. Superseded by the aio script, but provided for posterity.
+ - get_spotify_playlist.py : simply prints a Spotify playlist to stdout in text format.
+ - search_plex_trac: test of recursive search in the Plex music library.
+
 ## Version History
 - **v1.0:** Initial version with basic syncing functionality.
-- **v1.1:** Improved flexibility by making `--playlist-url` optional for Plex sources; enhanced README for ease of use.
+- **v1.1:** Minor bug fixes.
 
 ---
-
-Enjoy seamless playlist syncing between Spotify, YouTube Music, and Plex!
